@@ -1,13 +1,14 @@
 package com.example.wishlist
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class WishlistAdapter (private var items: MutableList<WishlistItem>): RecyclerView.Adapter<WishlistAdapter.ViewHolder>(){
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+class WishlistAdapter(val c: Context, private val items: ArrayList<WishlistItem>): RecyclerView.Adapter<WishlistAdapter.ViewHolder>(){
+    class ViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView){
 
         val nameTextView: TextView
         val priceTextView: TextView
@@ -34,7 +35,6 @@ class WishlistAdapter (private var items: MutableList<WishlistItem>): RecyclerVi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
-
         holder.nameTextView.text = item.name
         holder.priceTextView.text = item.price
         holder.urlTextView.text = item.url

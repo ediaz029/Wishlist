@@ -10,23 +10,24 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var items: MutableList<WishlistItem>
-    lateinit var adapter : WishlistAdapter
+    private lateinit var items: ArrayList<WishlistItem>
+    private lateinit var adapter : WishlistAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        items = mutableListOf()
-        val wishlistRV: RecyclerView = findViewById(R.id.wishlistRV)
-        val userItemName:EditText=findViewById(R.id.nameEntry)
-        val userPrice:EditText=findViewById(R.id.priceEntry)
-        val userURL:EditText=findViewById(R.id.urlEntry)
-
-        adapter = WishlistAdapter(items)
-        wishlistRV.adapter = adapter
+        items = ArrayList()
+        var wishlistRV: RecyclerView = findViewById(R.id.wishlistRV)
+        adapter = WishlistAdapter(this, items)
         wishlistRV.layoutManager = LinearLayoutManager(this)
+        wishlistRV.adapter = adapter
+
 
         findViewById<Button>(R.id.submitButton).setOnClickListener{
+
+            val userItemName:EditText=findViewById(R.id.nameEntry)
+            val userPrice:EditText=findViewById(R.id.priceEntry)
+            val userURL:EditText=findViewById(R.id.urlEntry)
 
             val name = userItemName.text.toString()
             val price = userPrice.text.toString()
